@@ -1,0 +1,805 @@
+COMPLETE PDS
+
+state_values <- c(32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384)
+input_values <- c(2, 3, 4, 5)
+selected_columns <- c("Length", "Algorithm")
+result_dfL <- data.frame(Group = character(), P_value = numeric())
+
+for (state in state_values) {
+    for (input in input_values) {
+        
+        subset_data <- subset(Complete_PDS_Results, States == state & inputs == input, select = selected_columns)
+        
+        
+        wilcox <- wilcox.test(subset_data$Length)
+        
+       
+        group <- paste("State", state, "Inputs", input, sep = "_")
+        
+        
+        result_dfL <- rbind(result_dfL, data.frame(Group = group, P_value = wilcox$p.value))
+    }
+}
+
+selected_columns <- c("Time.msecs.", "Algorithm")
+result_dfT <- data.frame(Group = character(), P_value = numeric())
+
+for (state in state_values) {
+    for (input in input_values) {
+
+        subset_data <- subset(Complete_PDS_Results, States == state & inputs == input, select = selected_columns)
+        
+
+        wilcox <- wilcox.test(subset_data$Time.msecs.)
+        
+
+        group <- paste("State", state, "Inputs", input, sep = "_")
+        
+
+        result_dfT <- rbind(result_dfT, data.frame(Group = group, P_value = wilcox$p.value))
+    }
+}
+
+selected_columns <- c("Memory.MB.", "Algorithm")
+result_dfM <- data.frame(Group = character(), P_value = numeric())
+
+for (state in state_values) {
+    for (input in input_values) {
+    
+        subset_data <- subset(Complete_PDS_Results, States == state & inputs == input, select = selected_columns)
+        
+       
+        wilcox <- wilcox.test(subset_data$Memory.MB.)
+        
+
+        group <- paste("State", state, "Inputs", input, sep = "_")
+        
+        
+        result_dfM <- rbind(result_dfM, data.frame(Group = group, P_value = wilcox$p.value))
+    }
+}
+
+print(result_dfL)
+print(result_dfT)
+print(result_dfM)
+
+
+
+Partial PDS
+///////////////////////////////////////////////////////
+state_values <- c(32, 64, 128, 256, 512, 1024, 2048)
+input_values <- c(2, 3)
+
+selected_columns <- c("Length", "Algorithm")
+result_dfL <- data.frame(Group = character(), P_value = numeric())
+
+for (state in state_values) {
+    for (input in input_values) {
+        
+        subset_data <- subset(Partial_PDS_Results, States == state & inputs == input, select = selected_columns)
+        
+        
+        wilcox <- wilcox.test(subset_data$Length)
+        
+       
+        group <- paste("State", state, "Inputs", input, sep = "_")
+        
+        
+        result_dfL <- rbind(result_dfL, data.frame(Group = group, P_value = wilcox$p.value))
+    }
+}
+
+selected_columns <- c("Time.msecs.", "Algorithm")
+result_dfT <- data.frame(Group = character(), P_value = numeric())
+
+for (state in state_values) {
+    for (input in input_values) {
+
+        subset_data <- subset(Partial_PDS_Results, States == state & inputs == input, select = selected_columns)
+        
+
+        wilcox <- wilcox.test(subset_data$Time.msecs.)
+        
+
+        group <- paste("State", state, "Inputs", input, sep = "_")
+        
+
+        result_dfT <- rbind(result_dfT, data.frame(Group = group, P_value = wilcox$p.value))
+    }
+}
+
+selected_columns <- c("Memory.MB.", "Algorithm")
+result_dfM <- data.frame(Group = character(), P_value = numeric())
+
+for (state in state_values) {
+    for (input in input_values) {
+    
+        subset_data <- subset(Partial_PDS_Results, States == state & inputs == input, select = selected_columns)
+        
+       
+        wilcox <- wilcox.test(subset_data$Memory.MB.)
+        
+
+        group <- paste("State", state, "Inputs", input, sep = "_")
+        
+        
+        result_dfM <- rbind(result_dfM, data.frame(Group = group, P_value = wilcox$p.value))
+    }
+}
+
+print(result_dfL)
+print(result_dfT)
+print(result_dfM)
+
+
+
+
+
+
+
+
+Complete RS
+/////////////////////////////////////////////
+state_values <- c(32, 64, 128, 256, 512)
+input_values <- c(2, 3, 4, 5)
+
+selected_columns <- c("Length", "Algorithm")
+result_dfL <- data.frame(Group = character(), P_value = numeric())
+
+for (state in state_values) {
+    for (input in input_values) {
+        
+        subset_data <- subset(Complete_SS_Results, States == state & Inputs == input, select = selected_columns)
+        
+        
+        wilcox <- wilcox.test(subset_data$Length)
+        
+       
+        group <- paste("State", state, "Inputs", input, sep = "_")
+        
+        
+        result_dfL <- rbind(result_dfL, data.frame(Group = group, P_value = wilcox$p.value))
+    }
+}
+
+selected_columns <- c("Time.msec.", "Algorithm")
+result_dfT <- data.frame(Group = character(), P_value = numeric())
+
+for (state in state_values) {
+    for (input in input_values) {
+
+        subset_data <- subset(Complete_SS_Results, States == state & Inputs == input, select = selected_columns)
+        
+
+        wilcox <- wilcox.test(subset_data$Time.msec.)
+        
+
+        group <- paste("State", state, "Inputs", input, sep = "_")
+        
+
+        result_dfT <- rbind(result_dfT, data.frame(Group = group, P_value = wilcox$p.value))
+    }
+}
+
+selected_columns <- c("Memory.MB.", "Algorithm")
+result_dfM <- data.frame(Group = character(), P_value = numeric())
+
+for (state in state_values) {
+    for (input in input_values) {
+    
+        subset_data <- subset(Complete_SS_Results, States == state & Inputs == input, select = selected_columns)
+        
+       
+        wilcox <- wilcox.test(subset_data$Memory.MB.)
+        
+
+        group <- paste("State", state, "Inputs", input, sep = "_")
+        
+        
+        result_dfM <- rbind(result_dfM, data.frame(Group = group, P_value = wilcox$p.value))
+    }
+}
+
+print(result_dfL)
+print(result_dfT)
+print(result_dfM)
+
+
+
+
+
+
+
+
+
+
+Partial RS
+////////////////////////////////////////////
+
+state_values <- c(32, 64, 128, 256, 512, 1024, 2048, 4096)
+input_values <- c(2, 3, 4, 5)
+
+
+
+selected_columns <- c("Length", "Algorithm")
+result_dfL <- data.frame(Group = character(), P_value = numeric())
+
+for (state in state_values) {
+    for (input in input_values) {
+        
+        subset_data <- subset(Partial_SS_Results, States == state & Inputs == input, select = selected_columns)
+        
+        
+        wilcox <- wilcox.test(subset_data$Length)
+        
+       
+        group <- paste("State", state, "Inputs", input, sep = "_")
+        
+        
+        result_dfL <- rbind(result_dfL, data.frame(Group = group, P_value = wilcox$p.value))
+    }
+}
+
+selected_columns <- c("Time.msec.", "Algorithm")
+result_dfT <- data.frame(Group = character(), P_value = numeric())
+
+for (state in state_values) {
+    for (input in input_values) {
+
+        subset_data <- subset(Partial_SS_Results, States == state & Inputs == input, select = selected_columns)
+        
+
+        wilcox <- wilcox.test(subset_data$Time.msec.)
+        
+
+        group <- paste("State", state, "Inputs", input, sep = "_")
+        
+
+        result_dfT <- rbind(result_dfT, data.frame(Group = group, P_value = wilcox$p.value))
+    }
+}
+
+selected_columns <- c("Memory.MB.", "Algorithm")
+result_dfM <- data.frame(Group = character(), P_value = numeric())
+
+for (state in state_values) {
+    for (input in input_values) {
+    
+        subset_data <- subset(Partial_SS_Results, States == state & Inputs == input, select = selected_columns)
+        
+       
+        wilcox <- wilcox.test(subset_data$Memory.MB.)
+        
+
+        group <- paste("State", state, "Inputs", input, sep = "_")
+        
+        
+        result_dfM <- rbind(result_dfM, data.frame(Group = group, P_value = wilcox$p.value))
+    }
+}
+
+print(result_dfL)
+print(result_dfT)
+print(result_dfM)
+
+///////// inpiut 2
+state_values <- c(8192)
+input_values <- c(2)
+
+
+
+selected_columns <- c("Length", "Algorithm")
+result_dfL <- data.frame(Group = character(), P_value = numeric())
+
+for (state in state_values) {
+    for (input in input_values) {
+        
+        subset_data <- subset(Partial_SS_Results, States == state & Inputs == input, select = selected_columns)
+        
+        
+        wilcox <- wilcox.test(subset_data$Length)
+        
+       
+        group <- paste("State", state, "Inputs", input, sep = "_")
+        
+        
+        result_dfL <- rbind(result_dfL, data.frame(Group = group, P_value = wilcox$p.value))
+    }
+}
+
+selected_columns <- c("Time.msec.", "Algorithm")
+result_dfT <- data.frame(Group = character(), P_value = numeric())
+
+for (state in state_values) {
+    for (input in input_values) {
+
+        subset_data <- subset(Partial_SS_Results, States == state & Inputs == input, select = selected_columns)
+        
+
+        wilcox <- wilcox.test(subset_data$Time.msec.)
+        
+
+        group <- paste("State", state, "Inputs", input, sep = "_")
+        
+
+        result_dfT <- rbind(result_dfT, data.frame(Group = group, P_value = wilcox$p.value))
+    }
+}
+
+selected_columns <- c("Memory.MB.", "Algorithm")
+result_dfM <- data.frame(Group = character(), P_value = numeric())
+
+for (state in state_values) {
+    for (input in input_values) {
+    
+        subset_data <- subset(Partial_SS_Results, States == state & Inputs == input, select = selected_columns)
+        
+       
+        wilcox <- wilcox.test(subset_data$Memory.MB.)
+        
+
+        group <- paste("State", state, "Inputs", input, sep = "_")
+        
+        
+        result_dfM <- rbind(result_dfM, data.frame(Group = group, P_value = wilcox$p.value))
+    }
+}
+
+print(result_dfL)
+print(result_dfT)
+print(result_dfM)
+
+
+
+
+RESULTS
+
+                  Group      P_value
+1     State_32_Inputs_2 5.209969e-35
+2     State_32_Inputs_3 3.777067e-36
+3     State_32_Inputs_4 1.266518e-36
+4     State_32_Inputs_5 9.625987e-36
+5     State_64_Inputs_2 3.421143e-35
+6     State_64_Inputs_3 7.611746e-36
+7     State_64_Inputs_4 6.278967e-37
+8     State_64_Inputs_5 4.379702e-36
+9    State_128_Inputs_2 4.644034e-35
+10   State_128_Inputs_3 1.968457e-35
+11   State_128_Inputs_4 3.277154e-36
+12   State_128_Inputs_5 3.712181e-36
+13   State_256_Inputs_2 4.293007e-35
+14   State_256_Inputs_3 2.985728e-35
+15   State_256_Inputs_4 5.436449e-36
+16   State_256_Inputs_5 1.361881e-36
+17   State_512_Inputs_2 3.697087e-35
+18   State_512_Inputs_3 5.866408e-36
+19   State_512_Inputs_4 2.403947e-35
+20   State_512_Inputs_5 2.405966e-36
+21  State_1024_Inputs_2 1.587808e-35
+22  State_1024_Inputs_3 6.393933e-36
+23  State_1024_Inputs_4 2.348009e-35
+24  State_1024_Inputs_5 1.461342e-35
+25  State_2048_Inputs_2 7.229185e-36
+26  State_2048_Inputs_3 7.386711e-36
+27  State_2048_Inputs_4 8.334381e-36
+28  State_2048_Inputs_5 7.735681e-36
+29  State_4096_Inputs_2 6.075927e-36
+30  State_4096_Inputs_3 1.107968e-35
+31  State_4096_Inputs_4 2.975359e-36
+32  State_4096_Inputs_5 6.644446e-36
+33  State_8192_Inputs_2 1.432530e-35
+34  State_8192_Inputs_3 4.321181e-35
+35  State_8192_Inputs_4 5.953938e-38
+36  State_8192_Inputs_5 4.793134e-36
+37 State_16384_Inputs_2 1.939527e-35
+38 State_16384_Inputs_3 1.113468e-35
+39 State_16384_Inputs_4 4.082772e-19
+40 State_16384_Inputs_5 5.183929e-19
+> print(result_dfT)
+                  Group      P_value
+1     State_32_Inputs_2          NaN
+2     State_32_Inputs_3          NaN
+3     State_32_Inputs_4 4.763577e-03
+4     State_32_Inputs_5 5.962079e-03
+5     State_64_Inputs_2 1.000000e+00
+6     State_64_Inputs_3 1.489147e-01
+7     State_64_Inputs_4 1.782418e-18
+8     State_64_Inputs_5 2.178413e-19
+9    State_128_Inputs_2 5.524673e-10
+10   State_128_Inputs_3 5.748219e-07
+11   State_128_Inputs_4 2.216510e-18
+12   State_128_Inputs_5 2.270573e-18
+13   State_256_Inputs_2 9.519965e-12
+14   State_256_Inputs_3 8.950151e-16
+15   State_256_Inputs_4 3.757564e-18
+16   State_256_Inputs_5 3.499711e-18
+17   State_512_Inputs_2 2.550526e-16
+18   State_512_Inputs_3 6.681169e-18
+19   State_512_Inputs_4 3.925905e-18
+20   State_512_Inputs_5 3.896774e-18
+21  State_1024_Inputs_2 8.475802e-36
+22  State_1024_Inputs_3 2.547334e-22
+23  State_1024_Inputs_4 2.791670e-20
+24  State_1024_Inputs_5 8.827743e-21
+25  State_2048_Inputs_2 3.610417e-35
+26  State_2048_Inputs_3 4.595837e-35
+27  State_2048_Inputs_4 3.646814e-35
+28  State_2048_Inputs_5 4.553280e-35
+29  State_4096_Inputs_2 9.979251e-35
+30  State_4096_Inputs_3 5.485325e-35
+31  State_4096_Inputs_4 6.176649e-35
+32  State_4096_Inputs_5 1.212306e-34
+33  State_8192_Inputs_2 1.400706e-34
+34  State_8192_Inputs_3 1.369346e-34
+35  State_8192_Inputs_4 1.320858e-34
+36  State_8192_Inputs_5 1.286489e-34
+37 State_16384_Inputs_2 1.439481e-34
+38 State_16384_Inputs_3 1.431635e-34
+39 State_16384_Inputs_4 1.414991e-34
+40 State_16384_Inputs_5 1.376781e-34
+> print(result_dfM)
+                  Group      P_value
+1     State_32_Inputs_2 1.172777e-34
+2     State_32_Inputs_3 6.712932e-35
+3     State_32_Inputs_4 1.266587e-35
+4     State_32_Inputs_5 1.091297e-35
+5     State_64_Inputs_2 4.567379e-35
+6     State_64_Inputs_3 1.028969e-34
+7     State_64_Inputs_4 1.369402e-35
+8     State_64_Inputs_5 1.457351e-35
+9    State_128_Inputs_2 8.036819e-35
+10   State_128_Inputs_3 7.936742e-35
+11   State_128_Inputs_4 9.628478e-35
+12   State_128_Inputs_5 3.950170e-35
+13   State_256_Inputs_2 1.041855e-34
+14   State_256_Inputs_3 1.285762e-34
+15   State_256_Inputs_4 1.336084e-34
+16   State_256_Inputs_5 9.651668e-35
+17   State_512_Inputs_2 1.199152e-34
+18   State_512_Inputs_3 1.268081e-34
+19   State_512_Inputs_4 1.331303e-34
+20   State_512_Inputs_5 1.261985e-34
+21  State_1024_Inputs_2 1.068976e-35
+22  State_1024_Inputs_3 4.381888e-35
+23  State_1024_Inputs_4 1.283367e-34
+24  State_1024_Inputs_5 3.154652e-35
+25  State_2048_Inputs_2 1.893165e-35
+26  State_2048_Inputs_3 3.203228e-35
+27  State_2048_Inputs_4 8.941902e-35
+28  State_2048_Inputs_5 8.027399e-35
+29  State_4096_Inputs_2 7.225336e-36
+30  State_4096_Inputs_3 8.451814e-36
+31  State_4096_Inputs_4 1.596666e-35
+32  State_4096_Inputs_5 1.284378e-35
+33  State_8192_Inputs_2 6.857674e-35
+34  State_8192_Inputs_3 1.026993e-35
+35  State_8192_Inputs_4 1.711284e-35
+36  State_8192_Inputs_5 1.284397e-35
+37 State_16384_Inputs_2 1.414393e-34
+38 State_16384_Inputs_3 7.964381e-35
+39 State_16384_Inputs_4 1.247564e-34
+40 State_16384_Inputs_5 1.067888e-34
+
+> print(result_dfL)
+                 Group      P_value
+1    State_32_Inputs_2 2.830461e-42
+2    State_32_Inputs_3 3.336377e-36
+						NaN
+						NaN
+3    State_64_Inputs_2 2.979904e-41
+4    State_64_Inputs_3 4.491905e-36
+						NaN
+						NaN
+5   State_128_Inputs_2 4.093248e-40
+6   State_128_Inputs_3 8.536386e-36
+						NaN
+						NaN
+7   State_256_Inputs_2 6.897940e-40
+8   State_256_Inputs_3 5.452303e-36
+						NaN
+						NaN
+9   State_512_Inputs_2 9.951268e-41
+10  State_512_Inputs_3 4.535694e-36
+						NaN
+						NaN
+11 State_1024_Inputs_2 1.124792e-41
+12 State_1024_Inputs_3 9.249459e-36
+						NaN
+						NaN
+13 State_2048_Inputs_2 8.071158e-42
+14 State_2048_Inputs_3 9.190340e-36
+						NaN
+						NaN
+						NaN
+						NaN
+						NaN
+						NaN
+						NaN
+						NaN
+						NaN
+						NaN
+						NaN
+						NaN
+						NaN
+						NaN
+
+
+> print(result_dfT)
+                 Group      P_value
+1    State_32_Inputs_2          NaN
+2    State_32_Inputs_3 1.000000e+00
+						NaN
+						NaN
+3    State_64_Inputs_2 3.688843e-02
+4    State_64_Inputs_3 1.489147e-01
+						NaN
+						NaN
+5   State_128_Inputs_2 5.333094e-05
+6   State_128_Inputs_3 5.708035e-10
+						NaN
+						NaN
+7   State_256_Inputs_2 1.280606e-36
+8   State_256_Inputs_3 2.748053e-36
+						NaN
+						NaN
+9   State_512_Inputs_2 9.939592e-35
+10  State_512_Inputs_3 9.708706e-35
+						NaN
+						NaN
+11 State_1024_Inputs_2 1.426421e-34
+12 State_1024_Inputs_3 1.387245e-34
+						NaN
+						NaN
+13 State_2048_Inputs_2 1.444050e-34
+14 State_2048_Inputs_3 1.444884e-34
+						NaN
+						NaN
+						NaN
+						NaN
+						NaN
+						NaN
+						NaN
+						NaN
+						NaN
+						NaN
+						NaN
+						NaN
+						NaN
+						NaN
+
+> print(result_dfM)
+                 Group      P_value
+1    State_32_Inputs_2 1.868502e-35
+2    State_32_Inputs_3 3.026081e-35
+						NaN
+						NaN
+3    State_64_Inputs_2 1.099503e-34
+4    State_64_Inputs_3 3.767386e-35
+						NaN
+						NaN
+5   State_128_Inputs_2 9.250626e-35
+6   State_128_Inputs_3 1.141096e-35
+						NaN
+						NaN
+7   State_256_Inputs_2 6.992394e-35
+8   State_256_Inputs_3 4.499071e-35
+						NaN
+						NaN
+9   State_512_Inputs_2 1.273576e-34
+10  State_512_Inputs_3 7.287039e-35
+						NaN
+						NaN
+11 State_1024_Inputs_2 1.317227e-34
+12 State_1024_Inputs_3 1.308940e-34
+						NaN
+						NaN
+13 State_2048_Inputs_2 1.442403e-34
+14 State_2048_Inputs_3 1.339860e-34
+						NaN
+						NaN
+						NaN
+						NaN
+						NaN
+						NaN
+						NaN
+						NaN
+						NaN
+						NaN
+						NaN
+						NaN
+						NaN
+						NaN
+
+
+> print(result_dfL)
+                Group      P_value
+1   State_32_Inputs_2 1.434623e-34
+2   State_32_Inputs_3 1.398063e-34
+3   State_32_Inputs_4 1.362007e-34
+4   State_32_Inputs_5 1.321175e-34
+5   State_64_Inputs_2 1.439339e-34
+6   State_64_Inputs_3 1.425658e-34
+7   State_64_Inputs_4 1.417286e-34
+8   State_64_Inputs_5 1.403868e-34
+9  State_128_Inputs_2 1.443704e-34
+10 State_128_Inputs_3 1.436099e-34
+11 State_128_Inputs_4 1.432664e-34
+12 State_128_Inputs_5 1.424072e-34
+13 State_256_Inputs_2 1.445352e-34
+14 State_256_Inputs_3 1.442789e-34
+15 State_256_Inputs_4 1.436402e-34
+16 State_256_Inputs_5 1.425859e-34
+17 State_512_Inputs_2 1.445148e-34
+18 State_512_Inputs_3 1.442789e-34
+19 State_512_Inputs_4 1.443765e-34
+20 State_512_Inputs_5 1.442424e-34
+> print(result_dfT)
+                Group      P_value
+1   State_32_Inputs_2 1.814492e-01
+2   State_32_Inputs_3 1.000000e+00
+3   State_32_Inputs_4 3.710934e-01
+4   State_32_Inputs_5 1.000000e+00
+5   State_64_Inputs_2 3.230981e-24
+6   State_64_Inputs_3 1.296226e-23
+7   State_64_Inputs_4 4.345342e-23
+8   State_64_Inputs_5 3.424917e-21
+9  State_128_Inputs_2 2.320195e-23
+10 State_128_Inputs_3 1.503789e-21
+11 State_128_Inputs_4 5.915446e-20
+12 State_128_Inputs_5 3.780270e-20
+13 State_256_Inputs_2 2.125784e-34
+14 State_256_Inputs_3 1.097892e-27
+15 State_256_Inputs_4 5.691569e-25
+16 State_256_Inputs_5 2.636569e-25
+17 State_512_Inputs_2 1.348053e-34
+18 State_512_Inputs_3 1.200340e-34
+19 State_512_Inputs_4 1.051399e-34
+20 State_512_Inputs_5 9.908397e-35
+> print(result_dfM)
+                Group      P_value
+1   State_32_Inputs_2 1.084630e-34
+2   State_32_Inputs_3 4.859014e-35
+3   State_32_Inputs_4 2.835595e-36
+4   State_32_Inputs_5 3.537336e-35
+5   State_64_Inputs_2 2.158792e-35
+6   State_64_Inputs_3 3.965912e-35
+7   State_64_Inputs_4 2.214577e-36
+8   State_64_Inputs_5 2.874789e-35
+9  State_128_Inputs_2 6.642493e-35
+10 State_128_Inputs_3 1.009944e-34
+11 State_128_Inputs_4 1.184542e-34
+12 State_128_Inputs_5 1.171001e-34
+13 State_256_Inputs_2 1.241634e-34
+14 State_256_Inputs_3 1.179655e-34
+15 State_256_Inputs_4 5.296113e-35
+16 State_256_Inputs_5 9.028132e-35
+17 State_512_Inputs_2 1.369906e-34
+18 State_512_Inputs_3 7.811673e-35
+19 State_512_Inputs_4 8.988440e-35
+20 State_512_Inputs_5 7.266171e-35
+
+
+> print(result_dfL)
+                 Group      P_value
+1    State_32_Inputs_2 8.648073e-36
+2    State_32_Inputs_3 1.173529e-35
+3    State_32_Inputs_4 1.080308e-35
+4    State_32_Inputs_5 1.021200e-35
+5    State_64_Inputs_2 5.197578e-36
+6    State_64_Inputs_3 8.063173e-36
+7    State_64_Inputs_4 9.561633e-36
+8    State_64_Inputs_5 1.267975e-35
+9   State_128_Inputs_2 4.604356e-36
+10  State_128_Inputs_3 9.386815e-36
+11  State_128_Inputs_4 8.648728e-36
+12  State_128_Inputs_5 1.006274e-35
+13  State_256_Inputs_2 2.838247e-36
+14  State_256_Inputs_3 1.215829e-35
+15  State_256_Inputs_4 9.024736e-36
+16  State_256_Inputs_5 5.807648e-36
+17  State_512_Inputs_2 3.326555e-36
+18  State_512_Inputs_3 5.197578e-36
+19  State_512_Inputs_4 5.197578e-36
+20  State_512_Inputs_5 4.799771e-36
+21 State_1024_Inputs_2 2.118324e-36
+22 State_1024_Inputs_3 3.673431e-36
+23 State_1024_Inputs_4 3.159361e-36
+24 State_1024_Inputs_5 2.996545e-36
+25 State_2048_Inputs_2 2.252489e-36
+26 State_2048_Inputs_3 4.035738e-36
+27 State_2048_Inputs_4 2.684592e-36
+28 State_2048_Inputs_5 2.996545e-36
+29 State_4096_Inputs_2 1.865077e-36
+30 State_4096_Inputs_3 3.673431e-36
+31 State_4096_Inputs_4 2.535689e-36
+32 State_4096_Inputs_5 2.391630e-36
+> print(result_dfT)
+                 Group      P_value
+1    State_32_Inputs_2 1.489147e-01
+2    State_32_Inputs_3 1.000000e+00
+3    State_32_Inputs_4 7.186064e-02
+4    State_32_Inputs_5 9.467072e-02
+5    State_64_Inputs_2 3.688843e-02
+6    State_64_Inputs_3 1.965616e-02
+7    State_64_Inputs_4 1.585605e-03
+8    State_64_Inputs_5 1.470877e-02
+9   State_128_Inputs_2 8.781431e-20
+10  State_128_Inputs_3 4.950852e-19
+11  State_128_Inputs_4 8.272906e-19
+12  State_128_Inputs_5 1.978269e-19
+13  State_256_Inputs_2 8.105705e-28
+14  State_256_Inputs_3 2.818927e-24
+15  State_256_Inputs_4 1.131421e-35
+16  State_256_Inputs_5 3.774678e-34
+17  State_512_Inputs_2 2.211250e-35
+18  State_512_Inputs_3 2.963116e-35
+19  State_512_Inputs_4 7.416347e-35
+20  State_512_Inputs_5 3.302140e-35
+21 State_1024_Inputs_2 7.245465e-35
+22 State_1024_Inputs_3 7.890094e-35
+23 State_1024_Inputs_4 3.681204e-35
+24 State_1024_Inputs_5 7.703180e-35
+25 State_2048_Inputs_2 1.164056e-34
+26 State_2048_Inputs_3 1.296119e-34
+27 State_2048_Inputs_4 7.953678e-35
+28 State_2048_Inputs_5 4.256773e-35
+29 State_4096_Inputs_2 1.395602e-34
+30 State_4096_Inputs_3 1.396487e-34
+31 State_4096_Inputs_4 1.413158e-34
+32 State_4096_Inputs_5 1.390300e-34
+> print(result_dfM)
+                 Group      P_value
+1    State_32_Inputs_2 7.349058e-36
+2    State_32_Inputs_3 4.187139e-36
+3    State_32_Inputs_4 2.517726e-36
+4    State_32_Inputs_5 2.117493e-36
+5    State_64_Inputs_2 1.152236e-35
+6    State_64_Inputs_3 7.429182e-36
+7    State_64_Inputs_4 9.849211e-36
+8    State_64_Inputs_5 9.261355e-36
+9   State_128_Inputs_2 1.048933e-35
+10  State_128_Inputs_3 5.389651e-36
+11  State_128_Inputs_4 9.491242e-36
+12  State_128_Inputs_5 3.849718e-36
+13  State_256_Inputs_2 9.522561e-36
+14  State_256_Inputs_3 1.320015e-36
+15  State_256_Inputs_4 1.631927e-36
+16  State_256_Inputs_5 2.834181e-36
+17  State_512_Inputs_2 1.175259e-35
+18  State_512_Inputs_3 5.342264e-36
+19  State_512_Inputs_4 2.389946e-36
+20  State_512_Inputs_5 6.940792e-36
+21 State_1024_Inputs_2 8.895105e-36
+22 State_1024_Inputs_3 5.676526e-36
+23 State_1024_Inputs_4 2.517726e-36
+24 State_1024_Inputs_5 9.718532e-37
+25 State_2048_Inputs_2 1.282492e-35
+26 State_2048_Inputs_3 1.281415e-35
+27 State_2048_Inputs_4 1.282607e-35
+28 State_2048_Inputs_5 1.283011e-35
+29 State_4096_Inputs_2 1.283665e-35
+30 State_4096_Inputs_3 1.278632e-35
+31 State_4096_Inputs_4 1.228897e-35
+32 State_4096_Inputs_5 1.090327e-35
+> 
+
+> print(result_dfL)
+                Group      P_value
+1 State_8192_Inputs_2 9.201322e-29
+> print(result_dfT)
+                Group      P_value
+1 State_8192_Inputs_2 1.076267e-26
+> print(result_dfM)
+                Group      P_value
+1 State_8192_Inputs_2 1.376523e-28
+
+
+
+
+
+
+
+
+
+
+
